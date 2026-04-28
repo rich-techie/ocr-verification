@@ -5,9 +5,16 @@ import numpy as np
 import cv2
 from pdf2image import convert_from_bytes
 import io
+import platform
+import os
 
-# Configure Tesseract path if necessary (Windows users may need this)
-#pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# Environment-aware Tesseract configuration
+if platform.system() == "Windows":
+    # Set the path for Windows local environment
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+else:
+    # On Linux (Streamlit Cloud), tesseract is in the PATH via packages.txt
+    pytesseract.pytesseract.tesseract_cmd = 'tesseract'
 
 def preprocess_image(image):
     """Basic image preprocessing to improve OCR accuracy."""
