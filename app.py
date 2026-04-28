@@ -7,7 +7,7 @@ from pdf2image import convert_from_bytes
 import io
 
 # Configure Tesseract path if necessary (Windows users may need this)
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+#pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 
 def preprocess_image(image):
     """Basic image preprocessing to improve OCR accuracy."""
