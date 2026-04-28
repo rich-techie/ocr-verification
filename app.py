@@ -6,6 +6,7 @@ import cv2
 from pdf2image import convert_from_bytes
 import io
 import platform
+import shutil
 import os
 
 # Environment-aware Tesseract configuration
@@ -13,8 +14,12 @@ if platform.system() == "Windows":
     # Set the path for Windows local environment
     pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
 else:
-    # On Linux (Streamlit Cloud), tesseract is in the PATH via packages.txt
-    pytesseract.pytesseract.tesseract_cmd = 'tesseract'
+    # On Linux (Streamlit Cloud), use shutil to find tesseract in PATH
+    tess_cmd = shutil.which('tesseract')
+    if tess_cmd:
+        pytesseract.pytesseract.tesseract_cmd = tess_cmd
+    else:
+        pytesseract.pytesseract.tesseract_cmd = 'tesseract' # Fallback
 
 def preprocess_image(image):
     """Basic image preprocessing to improve OCR accuracy."""
