@@ -23,9 +23,9 @@ POPPLER_PATH = r'C:\Data\software\poppler\poppler-25.12.0\Library\bin'
 def extract_document_id(text, doc_type):
     """Extract and clean document IDs based on known patterns."""
     patterns = {
-        "PAN Card": r'\b[A-Z]{5}[0-9]{4}[A-Z]{1}\b',
+        "PAN Card": r'\b[A-Z]{5}\s?[0-9]{4}\s?[A-Z]{1}\b',
         "Aadhar Card": r'[2-9][0-9]{3}\s?[0-9]{4}\s?[0-9]{4}',
-        "GST Certificate": r'\b[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}\b'
+        "GST Certificate": r'\b[0-9]{2}[A-Z]{5}\s?[0-9]{4}\s?[A-Z]{1}\s?[1-9A-Z]{1}Z[0-9A-Z]{1}\b'
     }
 
     pattern = patterns.get(doc_type)
